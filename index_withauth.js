@@ -39,6 +39,7 @@ app.use("/user", routes);
 
 // Login endpoint
 app.post("/login", (req, res) => {
+
     const user = req.body.user;
     if (!user) {
         return res.status(404).json({ message: "Body Empty" });

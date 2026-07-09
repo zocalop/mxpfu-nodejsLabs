@@ -27,7 +27,7 @@ let users = [
 // GET request: Retrieve all users
 router.get("/",(req,res)=>{
   // Copy the code here
-  res.send(users)  //This line is to be replaced with actual return value
+  res.send(JSON.stringify({users}, null, 4));  //This line is to be replaced with actual return value
 });
 
 // GET by specific ID request: Retrieve a single user with email ID
@@ -38,6 +38,19 @@ router.get("/:email",(req,res)=>{
   res.send(filtered_users);  //This line is to be replaced with actual return value
 });
 
+// GET by lastName
+router.get("/lastName/:lastName", (req, res) => {
+  const lastName = req.params.lastName;
+  let filtered_lastname = users.filter((user) => user.lastName === lastName);
+  res.send(filtered_lastname);
+});
+
+// GET by DOB
+router.get("/DOB/:DOB", (req, res) => {
+  const DOB = req.params.DOB;
+  let filtered_DOB = users.filter((user) => user.DOB === DOB);
+  res.send(filtered_DOB);
+});
 
 // POST request: Create a new user
 router.post("/",(req,res)=>{
